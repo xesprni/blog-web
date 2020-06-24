@@ -3,6 +3,10 @@ import {HashRouter, Route, Switch} from "react-router-dom";
 import {App} from "../App";
 import {Index} from "../page/Index";
 import {Article} from "../page/Component/Article";
+import {AdminHome} from "../page/Admin/AdminHome";
+import {ArticleEditor} from "../page/Component/ArticleEditor";
+import {Links} from "../page/Links/Links";
+import {Abouts} from "../page/Abouts/Abouts";
 
 class BlogRouter extends React.Component {
     render() {
@@ -10,10 +14,19 @@ class BlogRouter extends React.Component {
             <HashRouter>
                 <Switch>
                     <App>
+                        <Route path="/admin/" render={() =>
+                            <AdminHome>
+                                <Switch>
+                                    <Route exact path={"/admin/editor"} component={ArticleEditor} />
+                                </Switch>
+                            </AdminHome>
+                        } />
                         <Route path="/blog" render={() =>
                             <Switch>
                                 <Route exact path={"/blog/index"} component={Index}/>
-                                <Route exact path={"/blog/article"} component={Article}/>
+                                <Route exact path={"/blog/links"} component={Links}/>
+                                <Route exact path={"/blog/about"} component={Abouts}/>
+                                <Route exact path={"/blog/article/:id"} component={Article}/>
                             </Switch>
                         }/>
                     </App>
