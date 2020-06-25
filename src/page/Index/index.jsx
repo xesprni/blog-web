@@ -17,7 +17,9 @@ class Index extends React.Component {
     initData = () => {
         let url = "/article/getArticleList";
         let this_ = this;
-        post(url,{}).then(function (res) {
+        post(url,{
+            pageNum:1
+        }).then(function (res) {
             this_.setState({
                 articleList: res.data.pageData
             });
