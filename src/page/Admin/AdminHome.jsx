@@ -40,7 +40,7 @@ class AdminHome extends React.Component {
     render() {
         return (
             <div>
-                <Layout style={{minHeight: '100vh'}}>
+                <Layout>
                     <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} theme={"light"}>
                         <div className="logo"/>
                         <Menu theme="light" defaultSelectedKeys={['/admin/editor']} selectedKeys={[this.state.path]} mode="inline">

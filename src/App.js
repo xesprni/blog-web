@@ -8,7 +8,6 @@ import './images/icon/favicon.ico';
 import {Header} from "./page/Header/Header";
 import {Footer} from "./page/Footer/Footer";
 
-
 class App extends React.Component {
     render() {
         return (

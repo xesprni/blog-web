@@ -1,10 +1,13 @@
 import React from 'react';
 import E from 'wangeditor';
 import {Button, Input, Select, Switch} from 'antd';
+import {post} from '@utils/HttpUtil.js'
+
 
 class ArticleEditor extends React.Component {
     constructor(props, context) {
         super(props, context);
+        this.editorElem = React.createRef();
         this.state = {
             content: '',
             title: '',
@@ -14,13 +17,11 @@ class ArticleEditor extends React.Component {
             type: '',
             summary: '',
         };
-        this.getTopics();
     }
 
     componentDidMount() {
-        const div1 = this.refs.editorMenu;
-        const div2 = this.refs.editor;
-        const editor = new E(div1,div2);
+        const elem = this.editorElem.current
+        const editor = new E(elem)
         editor.customConfig.uploadImgShowBase64 = true;
         editor.customConfig.zIndex = 0;
         // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
@@ -29,12 +30,27 @@ class ArticleEditor extends React.Component {
                 content: html
             })
         };
-        editor.create()
+        editor.create();
+        this.getTopics();
     }
 
 
     getTopics = () => {
         let url = '/dict/getDictDetailById?id=1';
+        this.setState({
+            topics:[{
+                "itemName": "Java",
+                "itemValue": 1
+            },
+                {
+                    "itemName": "Spark",
+                    "itemValue": 1
+                },
+                {
+                    "itemName": "Mysql",
+                    "itemValue": 1
+                }]
+        });
     };
 
     handleChange = (value) => {
@@ -45,12 +61,16 @@ class ArticleEditor extends React.Component {
 
     topToggle = (checked) => {
         this.setState({
-            topFlag: checked?0:1
+            topFlag: checked ? 0 : 1
         });
     };
 
     saveArticle() {
-        let url = '/blog/saveArticle';
+        console.log("save")
+        let url = '/admin/saveArticle';
+        if (this.dataValid()) {
+            post(url,this.state);
+        }
     }
 
     dataValid = () => {
@@ -64,10 +84,14 @@ class ArticleEditor extends React.Component {
                 <div className={"editor-info"}>
                     <span className={"editor-info-label"}><span style={{color: "red"}}>*</span>Title:</span>
                     <Input style={{width: 200, display: 'inline-block', marginRight: 30}} maxLength={20}
-                           placeholder="Title" onChange={(e)=>{this.setState({title:e.target.value})}} />
+                           placeholder="Title" onChange={(e) => {
+                        this.setState({title: e.target.value})
+                    }}/>
                     <span className={"editor-info-label"}><span style={{color: "red"}}>*</span>Author:</span>
                     <Input style={{width: 200, display: 'inline-block', marginRight: 30}} maxLength={20}
-                           placeholder="Author" onChange={(e)=>{this.setState({author:e.target.value})}} />
+                           placeholder="Author" onChange={(e) => {
+                        this.setState({author: e.target.value})
+                    }}/>
                     <span className={"editor-info-label"}>Topic:</span>
                     <Select defaultValue="Select Topic" style={{width: 150, marginRight: 30}}
                             onChange={this.handleChange}>
@@ -78,16 +102,15 @@ class ArticleEditor extends React.Component {
                     <span className={"editor-info-label"}>Top:</span>
                     <Switch defaultChecked={false} onClick={this.topToggle}/>
                 </div>
-                <div style={{marginBottom:20}}>
+                <div style={{marginBottom: 20}}>
                     <span className={"editor-info-label"}><span style={{color: "red"}}>*</span>Summary:</span>
-                    <Input style={{width:1000,display: 'inline-block', marginRight: 200}} maxLength={200}
-                           placeholder="Article Summary Less Than 200" onChange={(e)=>{this.setState({summary:e.target.value})}} />
+                    <Input style={{width: 1000, display: 'inline-block', marginRight: 200}} maxLength={200}
+                           placeholder="Article Summary Less Than 200" onChange={(e) => {
+                        this.setState({summary: e.target.value})
+                    }}/>
                 </div>
                 {/* 将生成编辑器 */}
-                <div ref="editorMenu" style={{boxShadow:'black 0 0 5px'}} className="toolbar">
-                </div>
-                <div style={{padding:'5px 0',}} />
-                <div ref="editor" style={{textAlign: 'left',boxShadow:'black 0 0 5px',height:768}} >
+                <div ref={this.editorElem} style={{textAlign: 'left'}}>
                 </div>
                 <Button style={{marginTop: 20}} onClick={this.saveArticle.bind(this)} type="primary">Save
                     Article</Button>

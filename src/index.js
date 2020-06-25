@@ -5,10 +5,8 @@ import * as serviceWorker from './serviceWorker';
 import {BlogRouter} from "./router/BlogRouter";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BlogRouter />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <BlogRouter/>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
