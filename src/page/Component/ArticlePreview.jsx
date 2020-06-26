@@ -25,7 +25,7 @@ class ArticlePreview extends React.Component {
         const article = this.props.article;
 
         return (
-            <article className="excerpt excerpt-1">
+            <article className="excerpt excerpt-1" style={{marginBottom:10}}>
                 <a className="focus" href="article.html" title="">
                     <img className="thumb" src="images/excerpt.jpg" alt=""/>
                 </a>
@@ -72,14 +72,20 @@ class HotArticle extends React.Component {
 }
 
 class Daily extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+        const sentence = this.props.sentence;
+
         return (
             <div className="widget widget_sentence">
                 <h3>每日一句</h3>
                 <div className="widget-sentence-content">
-                    <h4>2016年01月05日星期二</h4>
-                    <p>Do not let what you cannot do interfere with what you can do.<br/>
-                        别让你不能做的事妨碍到你能做的事。（John Wooden）
+                    <h4>{sentence.dateline}</h4>
+                    <p>{sentence.content}<br/>
+                        {sentence.note}
                     </p>
                 </div>
             </div>

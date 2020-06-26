@@ -1,5 +1,6 @@
 import React from "react";
 import {Button} from 'antd';
+import {Link} from "react-router-dom";
 import {ProfileTwoTone} from '@ant-design/icons';
 
 
@@ -12,19 +13,21 @@ class Header extends React.Component {
                     <div className="container">
                         <div className="header-topbar hidden-xs link-border">
                             <ul className="site-nav topmenu">
-                                <li><a>关于我</a></li>
-                                <li><a rel="nofollow">友情链接</a></li>
-                                <li><a rel="nofollow">时光轴</a></li>
+                                <li><Link to="/blog/abouts">关于我</Link></li>
+                                <li><Link to="/blog/links">友情链接</Link></li>
+                                <li><a to="/blog/timeline">时光轴</a></li>
                             </ul>
                         </div>
                         <div className="navbar-header">
                             {/*缩小后的按钮*/}
                             <Button className="navbar-toggle collapsed" type="primary" icon={<ProfileTwoTone/>}
                                     size="large"/>
-                            <h1 className="logo hvr-bounce-in"><a>
-                                <b style={{color: '#006296'}}>
-                                    Miracle-
-                                </b></a>
+                            <h1 className="logo hvr-bounce-in">
+                                <Link to="/blog/index">
+                                    <b style={{color: '#006296'}}>
+                                        Miracle-
+                                    </b>
+                                </Link>
                             </h1>
                         </div>
                         <div className="collapse navbar-collapse" id="header-navbar">

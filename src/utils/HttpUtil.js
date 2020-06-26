@@ -61,7 +61,7 @@ export default axios
  */
 export function fetch(url, params = {}) {
     return new Promise((resolve, reject) => {
-        axios.get(url, {
+        axios.get(prefix + url, {
             params: params
         })
             .then(response => {

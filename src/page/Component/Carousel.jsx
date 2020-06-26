@@ -5,7 +5,7 @@ import './css/caroursel.css'
 class HeadCarousel extends React.Component{
     render() {
         return (
-            <Carousel autoplay>
+            <Carousel autoplay style={{marginBottom:20}}>
                 <div>
                     <h3>1</h3>
                 </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import {HeadCarousel} from "../Component/Carousel";
 import {ArticlePreview, Daily, HotArticle, SearchArticle} from "../Component/ArticlePreview";
 import {Notify} from "../Component/Notify";
-import {post} from '@utils/HttpUtil.js';
+import {post, fetch} from '@utils/HttpUtil.js';
 
 class Index extends React.Component {
 
@@ -11,19 +11,27 @@ class Index extends React.Component {
     }
 
     state = {
-        articleList: []
+        articleList: [],
+        dailySentence: {},
     };
 
     initData = () => {
         let url = "/article/getArticleList";
+        let url2 = "/article/getDailySentence";
         let this_ = this;
-        post(url,{
-            pageNum:1
+        post(url, {
+            pageNum: 1
         }).then(function (res) {
             this_.setState({
                 articleList: res.data.pageData
             });
         });
+        fetch(url2).then(function (res) {
+            this_.setState({
+                dailySentence: res.data
+            });
+        })
+
     };
 
     componentWillMount() {
@@ -43,14 +51,14 @@ class Index extends React.Component {
                             </div>
                         </div>
                         {this.state.articleList.map((item, index) => {
-                            return <ArticlePreview key={item.articleId} article={item} />;
+                            return <ArticlePreview key={item.articleId} article={item}/>;
                         })}
                     </div>
                 </div>
                 <aside className="sidebar">
                     <Notify/>
                     <SearchArticle/>
-                    <Daily/>
+                    <Daily sentence={this.state.dailySentence} />
                     <HotArticle/>
                 </aside>
             </section>
