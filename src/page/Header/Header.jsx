@@ -33,9 +33,9 @@ class Header extends React.Component {
                         <div className="collapse navbar-collapse" id="header-navbar">
                             <ul className="nav navbar-nav navbar-right">
                                 <li className="hidden-index active">
-                                    <a href="index.html">Miracle首页</a>
+                                    <Link to="/blog/index">Miracle首页</Link>
                                 </li>
-                                <li><a>前端技术</a></li>
+                                <li><Link to="/blog/index">前端技术</Link></li>
                                 <li><a>后端程序</a></li>
                                 <li><a>管理系统</a></li>
                                 <li><a>授人以渔</a></li>

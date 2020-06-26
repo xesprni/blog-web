@@ -1,13 +1,14 @@
 import React from "react";
-import {Comment, Avatar, Form, Button, Input, Tooltip} from "antd";
+import {Avatar, Button, Comment, Form, Input, Tooltip} from "antd";
 import moment from 'moment';
+import {UserOutlined} from '@ant-design/icons';
 
-const { TextArea } = Input;
+const {TextArea} = Input;
 
-const Editor = ({ onChange, onSubmit, submitting, value }) => (
+const Editor = ({onChange, onSubmit, submitting, value}) => (
     <div>
         <Form.Item>
-            <TextArea rows={4} onChange={onChange} value={value} />
+            <TextArea rows={4} onChange={onChange} value={value}/>
         </Form.Item>
         <Form.Item>
             <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
@@ -17,7 +18,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
     </div>
 );
 
-class CommentList extends React.Component{
+class CommentList extends React.Component {
 
     constructor(props) {
         super(props);
@@ -25,9 +26,7 @@ class CommentList extends React.Component{
             likes: 0,
             dislikes: 0,
             action: null,
-            content:"hello world",
         };
-        // console.log(this.props.comments);
     }
 
     like = () => {
@@ -47,18 +46,19 @@ class CommentList extends React.Component{
     };
 
     render() {
-        const { likes, dislikes, action,content } = this.state;
+        const comment = this.props.comment;
+        const {likes, dislikes, action, content} = this.state;
         const actions = [
             <span>
         <Tooltip title="Like">
 
         </Tooltip>
-        <span style={{ paddingLeft: 8, cursor: 'auto' }}>{likes}</span>
+        <span style={{paddingLeft: 8, cursor: 'auto'}}>{likes}</span>
       </span>,
             <span>
         <Tooltip title="Dislike">
         </Tooltip>
-        <span style={{ paddingLeft: 8, cursor: 'auto' }}>{dislikes}</span>
+        <span style={{paddingLeft: 8, cursor: 'auto'}}>{dislikes}</span>
       </span>,
             <span>Reply to</span>,
         ];
@@ -70,16 +70,16 @@ class CommentList extends React.Component{
                     // actions={actions}
                     author={<a>Ghost</a>}
                     avatar={
-                        <Avatar style={{ backgroundColor: '#000' }} icon="user" />
+                        <Avatar style={{backgroundColor: '#000'}} icon={<UserOutlined/>}/>
                     }
                     content={
                         <p>
-                            {content}
+                            {comment.content}
                         </p>
                     }
                     datetime={
-                        <Tooltip title={moment("2010-02-10").format('YYYY-MM-DD')}>
-                            <span>{moment("2010-02-10").fromNow()}</span>
+                        <Tooltip title={moment(comment.commentTime).format('YYYY-MM-DD HH:mm:ss')}>
+                            <span>{moment(comment.commentTime).fromNow()}</span>
                         </Tooltip>
                     }
                 />
@@ -129,12 +129,12 @@ class Commenter extends React.Component {
     };
 
     render() {
-        const { submitting, value } = this.state;
-        return(
+        const {submitting, value} = this.state;
+        return (
             <div>
                 <Comment
                     avatar={
-                        <Avatar style={{ backgroundColor: '#000' }} icon="user" />
+                        <Avatar style={{backgroundColor: '#000'}} icon={<UserOutlined/>}/>
                     }
                     content={
                         <Editor
@@ -150,4 +150,4 @@ class Commenter extends React.Component {
     }
 }
 
-export {CommentList,Commenter};
+export {CommentList, Commenter};

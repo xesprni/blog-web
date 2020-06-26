@@ -1,6 +1,7 @@
 import React from 'react';
 import {Input} from 'antd';
 import {AudioOutlined, HistoryOutlined, CommentOutlined, TeamOutlined, ClockCircleOutlined} from '@ant-design/icons';
+import {Link} from "react-router-dom";
 
 const {Search} = Input;
 
@@ -25,13 +26,13 @@ class ArticlePreview extends React.Component {
         const article = this.props.article;
 
         return (
-            <article className="excerpt excerpt-1" style={{marginBottom:10}}>
+            <article className="excerpt excerpt-1" style={{marginBottom: 10}}>
                 <a className="focus" href="article.html" title="">
                     <img className="thumb" src="images/excerpt.jpg" alt=""/>
                 </a>
                 <header>
-                    <a className="cat" href="program">{article.type}<i></i></a>
-                    <h2><a href="article.html" title="">{article.title}</a></h2>
+                    <span className="cat">{article.typeName}</span>
+                    <h2><Link to={"/blog/article/" + article.articleId} title="">{article.title}</Link></h2>
                 </header>
                 <p className="meta">
                     <time className="time">
