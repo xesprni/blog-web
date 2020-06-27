@@ -115,7 +115,8 @@ class Commenter extends React.Component {
             }).then(function (res) {
                 this_.props.loadComment();
                 this_.setState({
-                    submitting: false
+                    submitting: false,
+                    value: null
                 })
             });
         }, 1000);
