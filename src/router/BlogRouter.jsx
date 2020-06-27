@@ -7,6 +7,7 @@ import {AdminHome} from "../page/Admin/AdminHome";
 import {ArticleEditor} from "../page/Component/ArticleEditor";
 import {Links} from "../page/Links/Links";
 import {Abouts} from "../page/Abouts/Abouts";
+import {ArticleList} from "../page/ArticleList/ArticleList";
 
 class BlogRouter extends React.Component {
     render() {
@@ -26,6 +27,7 @@ class BlogRouter extends React.Component {
                                 <Route exact path={"/blog/index"} component={Index}/>
                                 <Route exact path={"/blog/links"} component={Links}/>
                                 <Route exact path={"/blog/about"} component={Abouts}/>
+                                <Route exact path={"/blog/articles"} component={ArticleList}/>
                                 <Route exact path={"/blog/article/:id"} component={Article}/>
                             </Switch>
                         }/>

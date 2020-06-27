@@ -10,14 +10,10 @@ class Article extends React.Component {
         super(props);
         this.state = {
             spinning: true,
+            articleSpinning: true,
             article: {},
             commentList: []
         };
-    }
-
-    componentWillMount() {
-        let id = this.props.match.params;
-        this.initArticle(id);
     }
 
     initArticle = (id) => {
@@ -26,13 +22,17 @@ class Article extends React.Component {
         fetch(url, id).then(function (res) {
             if (res.flag) {
                 this_.setState({
-                    article: res.data
+                    article: res.data,
+                    articleSpinning:false
                 });
             }
         });
     };
 
     componentDidMount() {
+        //加载文章
+        let id = this.props.match.params;
+        this.initArticle(id);
         //加载评论
         this.loadComment();
     }
@@ -73,13 +73,16 @@ class Article extends React.Component {
                                     <span className="item article-meta-views">
                                         <TeamOutlined/>  共{article.readCount}人围观</span>
                                     <span className="item article-meta-comment" title="评论：0">
-                                        <CommentOutlined/> {commentList.length}个不明物体
+                                        <CommentOutlined/> {commentList.length != null ? commentList.length : 0}个不明物体
                                     </span>
                                 </div>
                             </header>
                             <article className="article-content" dangerouslySetInnerHTML={{__html: article.content}}/>
+                                <div style={{textAlign: "center"}}>
+                                    <Spin spinning={this.state.articleSpinning}/>
+                                </div>
                             <div className="article-tags">
-                                标签： <Button type="primary" size="small">Tag</Button>
+                                标签： <Button type="primary" size="small">{article.typeName}</Button>
                             </div>
                             <div className="relates">
                                 <div className="title">
@@ -99,9 +102,9 @@ class Article extends React.Component {
                                 <div style={{textAlign: "center"}}>
                                     <Spin spinning={this.state.spinning}/>
                                 </div>
-                                {commentList.map((item, index) => {
-                                    return <CommentList key={item.commentId} comment={item} />;
-                                })}
+                                {commentList.length != null ? commentList.map((item, index) => {
+                                    return <CommentList key={item.commentId} comment={item}/>;
+                                }) : null}
                             </div>
                         </div>
                     </div>

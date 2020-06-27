@@ -3,16 +3,14 @@ import {HeadCarousel} from "../Component/Carousel";
 import {ArticlePreview, Daily, HotArticle, SearchArticle} from "../Component/ArticlePreview";
 import {Notify} from "../Component/Notify";
 import {post, fetch} from '@utils/HttpUtil.js';
+import {Spin} from "antd";
 
 class Index extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     state = {
         articleList: [],
         dailySentence: {},
+        spinning:true
     };
 
     initData = () => {
@@ -23,7 +21,8 @@ class Index extends React.Component {
             pageNum: 1
         }).then(function (res) {
             this_.setState({
-                articleList: res.data.pageData
+                articleList: res.data.pageData,
+                spinning:false
             });
         });
         fetch(url2).then(function (res) {
@@ -47,8 +46,9 @@ class Index extends React.Component {
                         <HeadCarousel/>
                         <div className="title">
                             <h3>最新发布</h3>
-                            <div className="more"><a href="">JAVA</a><a href="">BIG-DATA</a><a href="">DATABASE</a>
-                            </div>
+                        </div>
+                        <div style={{textAlign: "center"}}>
+                            <Spin spinning={this.state.spinning}/>
                         </div>
                         {this.state.articleList.map((item, index) => {
                             return <ArticlePreview key={item.articleId} article={item}/>;

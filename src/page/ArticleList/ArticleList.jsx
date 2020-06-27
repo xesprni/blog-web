@@ -1,30 +1,73 @@
 import React from "react";
+import {fetch, post} from '@utils/HttpUtil.js';
+import {ArticlePreview} from "../Component/ArticlePreview";
+import {Pagination} from 'antd';
 
-class ArticleList extends React.Component{
+class ArticleList extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    state = {
+        articleList: [],
+        dailySentence: {},
+        currentPage: 1,
+        total: 0
+    };
+
+    getArticle = (pageNum, pageSize, type = 0) => {
+        let url = "/article/getArticleList";
+        let url2 = "/article/getDailySentence";
+        let this_ = this;
+        post(url, {
+            pageNum: pageNum,
+            pageSize: pageSize,
+            type: type
+        }).then(function (res) {
+            console.log(res.data)
+            this_.setState({
+                articleList: res.data.pageData,
+                total: res.data.total
+            });
+        });
+        fetch(url2).then(function (res) {
+            this_.setState({
+                dailySentence: res.data
+            });
+        })
+    };
+
+    pageChange = (page, size) => {
+        this.getArticle(page, size)
+    }
+
+    componentWillMount() {
+        this.getArticle(1, 10);
+    }
+
     render() {
+
+        const {currentPage, total} = this.state;
+
         return (
             <section className="container">
                 <div className="content-wrap">
                     <div className="content">
                         <div className="title">
-                            <h3>后端程序</h3>
+                            <h3>文章列表</h3>
+                            <div className="more"><a href="">JAVA</a><a href="">BIG-DATA</a><a href="">DATABASE</a></div>
                         </div>
-                        <article className="excerpt excerpt-1"><a className="focus" href="article.html" title=""></a>
-                            <header><a className="cat" href="program">后端程序<i></i></a>
-                                <h2><a href="article.html" title="">php如何判断一个日期的格式是否正确</a></h2>
-                            </header>
-                            <p className="meta">
-                                <time className="time"><i className="glyphicon glyphicon-time"></i> 2016-1-4 10:29:39
-                                </time>
-                                <span className="views"><i className="glyphicon glyphicon-eye-open"></i> 共120人围观</span>
-                                <a className="comment" href="article.html#comment"><i
-                                    className="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
-                            <p className="note">可以用strtotime()把日期（$date）转成时间戳，再用date()按需要验证的格式转成一个日期，来跟$date比较是否相同来验证这个日期的格式是否是正确的。所以要验证日期格式
-                                ... </p>
-                        </article>
+                        {this.state.articleList.map((item, index) => {
+                            return <ArticlePreview key={item.articleId} article={item}/>;
+                        })}
+                        <Pagination pageSize={10} onChange={this.pageChange} defaultCurrent={currentPage}
+                                    total={total}/>
                     </div>
                 </div>
             </section>
         );
     }
 }
+
+export {ArticleList};

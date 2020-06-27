@@ -16,37 +16,32 @@ const suffix = (
 
 class ArticlePreview extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-
     render() {
 
         const article = this.props.article;
 
         return (
             <article className="excerpt excerpt-1" style={{marginBottom: 10}}>
-                <a className="focus" href="article.html" title="">
-                    <img className="thumb" src="images/excerpt.jpg" alt=""/>
-                </a>
-                <header>
-                    <span className="cat">{article.typeName}</span>
-                    <h2><Link to={"/blog/article/" + article.articleId} title="">{article.title}</Link></h2>
-                </header>
-                <p className="meta">
-                    <time className="time">
-                        <HistoryOutlined/> {article.updateTime}
-                    </time>
-                    <span className="views">
-                        <TeamOutlined/> 共{article.readCount}人围观
+                <Link to={"/blog/article/" + article.articleId} title="">
+                    <span className="focus" href="article.html" title="">
+                        <img className="thumb" src="images/excerpt.jpg" alt=""/>
                     </span>
-                    <a className="comment" href="article.html#comment">
-                        <CommentOutlined/> 0个不明物体</a>
-                </p>
-                <p className="note">
-                    {article.summary}
-                </p>
+                    <header>
+                        <span className="cat">{article.typeName}</span>
+                        <h2>{article.title}</h2>
+                    </header>
+                    <p className="meta">
+                        <time className="time">
+                            <HistoryOutlined/> {article.updateTime}
+                        </time>
+                        <span className="views">
+                            <TeamOutlined/> 共{article.readCount}人围观
+                        </span>
+                    </p>
+                    <p className="note">
+                        {article.summary}
+                    </p>
+                </Link>
             </article>
         );
     }
@@ -99,7 +94,7 @@ class SearchArticle extends React.Component {
     render() {
         return (
             <div className="widget widget_search">
-                <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton/>
+                <Search placeholder="功能完善中 敬请期待" onSearch={value => console.log(value)} enterButton/>
             </div>
         );
     }
