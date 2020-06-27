@@ -19,8 +19,15 @@ class ArticleEditor extends React.Component {
         };
     }
 
+    componentWillMount() {
+        //判断是否存在token
+        if (!window.localStorage.getItem("token")) {
+            window.location.href="#/login"
+        }
+    }
+
     componentDidMount() {
-        const elem = this.editorElem.current
+        const elem = this.editorElem.current;
         const editor = new E(elem)
         editor.customConfig.uploadImgShowBase64 = true;
         editor.customConfig.zIndex = 0;
@@ -69,7 +76,11 @@ class ArticleEditor extends React.Component {
         console.log("save")
         let url = '/admin/saveArticle';
         if (this.dataValid()) {
-            post(url,this.state);
+            post(url,this.state).then(function (res) {
+                if (res.flag) {
+                    window.location.reload();
+                }
+            });
         }
     }
 

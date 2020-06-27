@@ -78,14 +78,14 @@ class HotArticle extends React.Component {
                 <ul>
                     <li>
                         {hotArticles.map((item, index) => {
-                            return <a key={index} href="">
+                            return <Link key={index} to={"/blog/article/" + item.articleId}>
                                 <span className="thumbnail">
                                     {/*<img className="thumb" src="images/excerpt.jpg"/>*/}
                                 </span>
                                 <span className="text">{item.title}</span>
                                 <span className="muted"><ClockCircleOutlined/> {item.updateTime} </span>
                                 <span className="muted"><TeamOutlined/> {item.readCount}</span>
-                            </a>;
+                            </Link>;
                         })}
                     </li>
                 </ul>

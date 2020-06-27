@@ -9,12 +9,14 @@ import {Links} from "../page/Links/Links";
 import {Abouts} from "../page/Abouts/Abouts";
 import {ArticleList} from "../page/ArticleList/ArticleList";
 import {Timelines} from "../page/TimeLine/Timelines";
+import {Login} from "../page/Login/Login";
 
 class BlogRouter extends React.Component {
     render() {
         return (
             <HashRouter>
                 <Switch>
+                    <Route exact path={"/login"} component={Login} />
                     <App>
                         <Route path="/admin/" render={() =>
                             <AdminHome>

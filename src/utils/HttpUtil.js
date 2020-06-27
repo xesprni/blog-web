@@ -4,25 +4,21 @@ import axios from 'axios';
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL = '';
 const prefix = "http://localhost:8000";
+// const prefix = "";
 // http request 拦截器
 axios.interceptors.request.use(
-    // config => {
-    //     const token = Cookies.get("token");
-    //     // config.data = JSON.stringify(config.data);
-    //     // config.headers = {
-    //     //     'Content-Type': 'application/x-www-form-urlencoded'
-    //     // };
-    //     if (token) {
-    //         // config.params = {'token': token}
-    //         config.headers = {
-    //             'token':token
-    //         }
-    //     }
-    //     return config;
-    // },
-    // err => {
-    //     return Promise.reject(err);
-    // }
+    config => {
+        let token = window.localStorage.getItem("token");
+        config.data = JSON.stringify(config.data);
+        config.headers = {
+            'Authorization': token,
+            'Content-Type':'application/json'
+        };
+        return config;
+    },
+    err => {
+        return Promise.reject(err);
+    }
 );
 
 // http response 拦截器

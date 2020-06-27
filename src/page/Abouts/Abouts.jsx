@@ -42,10 +42,10 @@ class Abouts extends React.Component {
                             <br/>
                             <br/>
                             <p><a href="https://weibo.com/u/2821985171"><WeiboOutlined/> Weibo</a></p>
+                            <p><a href="https://twitter.com/Gakki_Dong"><TwitterOutlined/> Twitter</a></p>
                             <p>
                                 <a href="https://www.facebook.com/profile.php?id=100015268657022"><FacebookOutlined/> Facebook</a>
                             </p>
-                            <p><a href="https://twitter.com/Gakki_Dong"><TwitterOutlined/> Twitter</a></p>
                             <p><a href="https://www.instagram.com/gakki_dong/"><InstagramOutlined/> Instagram</a></p>
                         </div>
                     </div>

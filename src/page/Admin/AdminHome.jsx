@@ -48,27 +48,27 @@ class AdminHome extends React.Component {
                                 <span>Editor</span>
                                 <Link to={"/admin/editor"}/>
                             </Menu.Item>
-                            <Menu.Item key="/admin/article">
-                                <span>Article</span>
-                                <Link to={"/admin/article"}/>
-                            </Menu.Item>
-                            <Menu.Item key="2">
-                                <span>Monitor</span>
-                            </Menu.Item>
-                            <Menu.Item key="3">
-                                <span>Block</span>
-                            </Menu.Item>
-                            <Menu.Item key="/admin/sql">
-                                <span>SQL Monitor</span>
-                                <Link to={"/admin/sql"}/>
-                            </Menu.Item>
-                            <Menu.Item key="/admin/dict">
-                                <span>DICT</span>
-                                <Link to={"/admin/dict"}/>
-                            </Menu.Item>
-                            <Menu.Item key="9">
-                                <span>Chart</span>
-                            </Menu.Item>
+                            {/*<Menu.Item key="/admin/article">*/}
+                            {/*    <span>Article</span>*/}
+                            {/*    <Link to={"/admin/article"}/>*/}
+                            {/*</Menu.Item>*/}
+                            {/*<Menu.Item key="2">*/}
+                            {/*    <span>Monitor</span>*/}
+                            {/*</Menu.Item>*/}
+                            {/*<Menu.Item key="3">*/}
+                            {/*    <span>Block</span>*/}
+                            {/*</Menu.Item>*/}
+                            {/*<Menu.Item key="/admin/sql">*/}
+                            {/*    <span>SQL Monitor</span>*/}
+                            {/*    <Link to={"/admin/sql"}/>*/}
+                            {/*</Menu.Item>*/}
+                            {/*<Menu.Item key="/admin/dict">*/}
+                            {/*    <span>DICT</span>*/}
+                            {/*    <Link to={"/admin/dict"}/>*/}
+                            {/*</Menu.Item>*/}
+                            {/*<Menu.Item key="9">*/}
+                            {/*    <span>Chart</span>*/}
+                            {/*</Menu.Item>*/}
                         </Menu>
                     </Sider>
                     <Layout>
