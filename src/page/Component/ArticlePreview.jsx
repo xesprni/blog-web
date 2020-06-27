@@ -2,6 +2,7 @@ import React from 'react';
 import {Input} from 'antd';
 import {AudioOutlined, HistoryOutlined, CommentOutlined, TeamOutlined, ClockCircleOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
+import {fetch} from '@utils/HttpUtil.js';
 
 const {Search} = Input;
 
@@ -48,18 +49,44 @@ class ArticlePreview extends React.Component {
 }
 
 class HotArticle extends React.Component {
+
+    getHotArticle = () => {
+        let url = "/article/getHotArticle"
+        let this_ = this;
+        fetch(url).then(function (res) {
+            this_.setState({
+                hotArticles: res.data,
+            });
+        });
+    };
+
+    state = {
+        hotArticles: []
+    }
+
+    componentDidMount() {
+        this.getHotArticle();
+    }
+
     render() {
+
+        const {hotArticles} = this.state
+
         return (
             <div className="widget widget_hot">
                 <h3>热门文章</h3>
                 <ul>
                     <li>
-                        <a href="">
-                            <span className="thumbnail"><img className="thumb" src="images/excerpt.jpg"/></span>
-                            <span className="text">php如何判断一个日期的格式是否正确</span>
-                            <span className="muted"><ClockCircleOutlined/> 2016-1-4 </span>
-                            <span className="muted"><TeamOutlined/> 120</span>
-                        </a>
+                        {hotArticles.map((item, index) => {
+                            return <a key={index} href="">
+                                <span className="thumbnail">
+                                    {/*<img className="thumb" src="images/excerpt.jpg"/>*/}
+                                </span>
+                                <span className="text">{item.title}</span>
+                                <span className="muted"><ClockCircleOutlined/> {item.updateTime} </span>
+                                <span className="muted"><TeamOutlined/> {item.readCount}</span>
+                            </a>;
+                        })}
                     </li>
                 </ul>
             </div>
@@ -68,9 +95,6 @@ class HotArticle extends React.Component {
 }
 
 class Daily extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const sentence = this.props.sentence;

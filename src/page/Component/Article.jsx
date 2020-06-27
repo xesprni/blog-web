@@ -96,7 +96,7 @@ class Article extends React.Component {
                                 <h3>评论 <small>抢沙发</small></h3>
                             </div>
                             <div id="respond">
-                                <Commenter/>
+                                <Commenter loadComment={this.loadComment} articleId={article.articleId}/>
                             </div>
                             <div id="postcomments">
                                 <div style={{textAlign: "center"}}>

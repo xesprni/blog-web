@@ -2,6 +2,7 @@ import React from "react";
 import {Avatar, Button, Comment, Form, Input, Tooltip} from "antd";
 import moment from 'moment';
 import {UserOutlined} from '@ant-design/icons';
+import {post} from '@utils/HttpUtil.js';
 
 const {TextArea} = Input;
 
@@ -97,27 +98,25 @@ class Commenter extends React.Component {
     };
 
     handleSubmit = () => {
-        if (!this.state.value) {
+        const id = this.props.articleId;
+        let value = this.state.value;
+        if (!value) {
             return;
         }
-
         this.setState({
             submitting: true,
         });
-
+        let this_ = this;
         setTimeout(() => {
-            this.setState({
-                submitting: false,
-                value: '',
-                comments: [
-                    {
-                        author: 'Han Solo',
-                        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-                        content: <p>{this.state.value}</p>,
-                        datetime: moment().fromNow(),
-                    },
-                    ...this.state.comments,
-                ],
+            let url = "/article/saveComment"
+            post(url, {
+                articleId: id,
+                content: value,
+            }).then(function (res) {
+                this_.props.loadComment();
+                this_.setState({
+                    submitting: false
+                })
             });
         }, 1000);
     };

@@ -1,7 +1,5 @@
 import React from "react";
-import {Button} from 'antd';
 import {Link} from "react-router-dom";
-import {ProfileTwoTone} from '@ant-design/icons';
 import {CollapseNav, HeadNav} from "../Component/NavList";
 
 
@@ -14,7 +12,7 @@ class Header extends React.Component {
                     <div className="container">
                         <div className="header-topbar hidden-xs link-border">
                             <ul className="site-nav topmenu">
-                                <li><Link to="/blog/abouts">关于我</Link></li>
+                                <li><Link to="/blog/abouts">关于</Link></li>
                                 <li><Link to="/blog/links">友情链接</Link></li>
                                 <li><Link to="/blog/timeline">时光轴</Link></li>
                             </ul>

@@ -1,7 +1,8 @@
 import React from "react";
 import {fetch, post} from '@utils/HttpUtil.js';
-import {ArticlePreview} from "../Component/ArticlePreview";
+import {ArticlePreview, Daily, HotArticle, SearchArticle} from "../Component/ArticlePreview";
 import {Pagination} from 'antd';
+import {Notify} from "../Component/Notify";
 
 class ArticleList extends React.Component {
 
@@ -56,7 +57,7 @@ class ArticleList extends React.Component {
                     <div className="content">
                         <div className="title">
                             <h3>文章列表</h3>
-                            <div className="more"><a href="">JAVA</a><a href="">BIG-DATA</a><a href="">DATABASE</a></div>
+                            {/*<div className="more"><a href="">JAVA</a><a href="">BIG-DATA</a><a href="">DATABASE</a></div>*/}
                         </div>
                         {this.state.articleList.map((item, index) => {
                             return <ArticlePreview key={item.articleId} article={item}/>;
@@ -65,6 +66,12 @@ class ArticleList extends React.Component {
                                     total={total}/>
                     </div>
                 </div>
+                <aside className="sidebar">
+                    <div style={{marginBottom:30}} />
+                    <SearchArticle/>
+                    <Daily sentence={this.state.dailySentence}/>
+                    <HotArticle/>
+                </aside>
             </section>
         );
     }

@@ -32,6 +32,11 @@ class Notify extends React.Component {
                             <p><a href="https://twitter.com/Gakki_Dong"><TwitterOutlined/> Twitter</a></p>
                             <p><a href="https://www.instagram.com/gakki_dong/"><InstagramOutlined/> Instagram</a></p>
                         </TabPane>
+                        <TabPane tab="新功能" key="4">
+                            <p>下个版本将后台服务全面容器化,视服务器资源而定</p>
+                            <p>前端页面将加入搜索功能</p>
+                            <p>增加文章列表图片功能</p>
+                        </TabPane>
                     </Tabs>
                 </div>
             </div>

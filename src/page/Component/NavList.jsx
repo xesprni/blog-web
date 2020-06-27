@@ -11,7 +11,7 @@ class NavList extends React.Component {
             <div className="pageside">
                 <div className="pagemenus">
                     <ul className="pagemenu">
-                        <li><Link to="/blog/abouts">关于我</Link></li>
+                        <li><Link to="/blog/abouts">关于</Link></li>
                         <li><Link to="/blog/links">友情链接</Link></li>
                         <li><Link to="/blog/timeline">时光轴</Link></li>
                     </ul>
@@ -85,7 +85,7 @@ class CollapseNav extends React.Component {
                     <Link to="/blog/articles">文章列表</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to="/blog/abouts">关于我</Link>
+                    <Link to="/blog/abouts">关于</Link>
                 </Menu.Item>
                 <Menu.Item>
                     <Link to="/blog/links">友情链接</Link>
