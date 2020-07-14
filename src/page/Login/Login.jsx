@@ -37,6 +37,7 @@ class LoginForm extends React.Component {
         post(url,obj).then(function (res) {
             if (res.flag) {
                 window.localStorage.setItem("token", res.data);
+                window.location.reload();
             }
         })
     }
@@ -45,6 +46,10 @@ class LoginForm extends React.Component {
 
     }
 
+    refreshVerifyCode=()=>{
+        let img = document.getElementById("verifyImg");
+        img.setAttribute("src", "http://www.miracle1874.com:8000/admin/getVerify"+"?"+Math.random());
+    }
     componentDidMount() {
     }
 
@@ -100,8 +105,8 @@ class LoginForm extends React.Component {
                         <Input maxLength={4}/>
                     </Form.Item>
                 </div>
-                <div style={{display:"inline-block"}}>
-                    <img src={`http://localhost:8000/admin/getVerify`} />
+                <div style={{display:"inline-block"}} onClick={this.refreshVerifyCode}>
+                    <img id="verifyImg" src={`http://www.miracle1874.com:8000/admin/getVerify`} />
                 </div>
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">

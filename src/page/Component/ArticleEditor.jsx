@@ -38,6 +38,7 @@ class ArticleEditor extends React.Component {
             })
         };
         editor.create();
+        editor.$textContainerElem.css('height', '800px'); //设置高度
         this.getTopics();
     }
 
@@ -91,10 +92,10 @@ class ArticleEditor extends React.Component {
     render() {
         const {Option} = Select;
         return (
-            <div>
+            <div style={{marginBottom:40}}>
                 <div className={"editor-info"}>
                     <span className={"editor-info-label"}><span style={{color: "red"}}>*</span>Title:</span>
-                    <Input style={{width: 200, display: 'inline-block', marginRight: 30}} maxLength={20}
+                    <Input style={{width: 200, display: 'inline-block', marginRight: 30,marginBottom:15}} maxLength={20}
                            placeholder="Title" onChange={(e) => {
                         this.setState({title: e.target.value})
                     }}/>
@@ -123,8 +124,7 @@ class ArticleEditor extends React.Component {
                 {/* 将生成编辑器 */}
                 <div ref={this.editorElem} style={{textAlign: 'left'}}>
                 </div>
-                <Button style={{marginTop: 20}} onClick={this.saveArticle.bind(this)} type="primary">Save
-                    Article</Button>
+                <Button style={{marginTop: 20}} onClick={this.saveArticle.bind(this)} type="primary">Save Article</Button>
             </div>
         );
     }

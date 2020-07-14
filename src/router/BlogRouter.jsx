@@ -1,5 +1,5 @@
 import React from "react";
-import {HashRouter, Route, Switch} from "react-router-dom";
+import {HashRouter, Route, Switch,Redirect} from "react-router-dom";
 import {App} from "../App";
 import {Index} from "../page/Index";
 import {Article} from "../page/Component/Article";
@@ -18,10 +18,12 @@ class BlogRouter extends React.Component {
                 <Switch>
                     <Route exact path={"/login"} component={Login} />
                     <App>
+                        <Route path="/" component={Index} exact/>
                         <Route path="/admin/" render={() =>
                             <AdminHome>
                                 <Switch>
                                     <Route exact path={"/admin/editor"} component={ArticleEditor} />
+                                    <Redirect to="/login"/>
                                 </Switch>
                             </AdminHome>
                         } />
@@ -33,6 +35,7 @@ class BlogRouter extends React.Component {
                                 <Route exact path={"/blog/timeline"} component={Timelines}/>
                                 <Route exact path={"/blog/articles"} component={ArticleList}/>
                                 <Route exact path={"/blog/article/:id"} component={Article}/>
+                                <Redirect to="/" />
                             </Switch>
                         }/>
                     </App>

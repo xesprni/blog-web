@@ -82,7 +82,6 @@ class AdminHome extends React.Component {
                                 {this.props.children}
                             </div>
                         </Content>
-                        <Footer style={{textAlign: 'center'}}>Miracle- ©2019 </Footer>
                     </Layout>
                 </Layout>
             </div>

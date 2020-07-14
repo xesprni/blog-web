@@ -13,7 +13,7 @@ class Footer extends React.Component {
 
     render() {
         return (
-            <footer className="footer">
+            <footer className="footer" style={{position:"fixed",bottom:"0",width:"100%"}}>
                 <div className="container">
                     <p>&copy; 2020 <a href="">@Miracle</a> &nbsp; <a>版权所有</a> &nbsp;</p>
                 </div>
