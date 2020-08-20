@@ -13,7 +13,9 @@ class App extends React.Component {
         return (
             <div className="user-select">
                 <Header/>
-                {this.props.children}
+                <div  style={{minHeight:document.documentElement.clientHeight - 140}}>
+                    {this.props.children}
+                </div>
                 <Footer/>
             </div>
         );

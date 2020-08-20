@@ -48,7 +48,7 @@ class LoginForm extends React.Component {
 
     refreshVerifyCode=()=>{
         let img = document.getElementById("verifyImg");
-        img.setAttribute("src", "http://www.miracle1874.com:8000/admin/getVerify"+"?"+Math.random());
+        img.setAttribute("src", "https://www.miracle1874.com/api/admin/getVerify"+"?"+Math.random());
     }
     componentDidMount() {
     }

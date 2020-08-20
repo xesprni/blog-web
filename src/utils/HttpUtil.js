@@ -4,7 +4,7 @@ import axios from 'axios';
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL = '';
 // const prefix = "http://localhost:8000";
-const prefix = "http://www.miracle1874.com:8000";
+const prefix = "https://www.miracle1874.com/api";
 // http request 拦截器
 axios.interceptors.request.use(
     config => {
